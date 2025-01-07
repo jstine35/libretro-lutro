@@ -82,6 +82,7 @@ ifeq ($(platform), unix)
 	SHARED := -shared -Wl,--no-as-needed,--no-undefined
 	LUA_SYSCFLAGS := -DLUA_USE_POSIX
 	LDFLAGS += -Wl,-E
+	CFLAGS += -includefi-warnings.h
 else ifeq ($(platform), linux-portable)
 	TARGET := $(TARGET_NAME)_libretro.so
 	fpic := -fPIC -nostdlib
@@ -396,9 +397,11 @@ else ifeq ($(platform), miyoo)
 	CFLAGS += -fno-common -ftree-vectorize -funswitch-loops
 	LUA_MYCFLAGS += -fomit-frame-pointer -ffast-math -march=armv5te -mtune=arm926ej-s
 	LUA_MYCFLAGS += -fno-common -ftree-vectorize -funswitch-loops
+# MSYS2 (windows) [assumed]
 else
 	TARGET := $(TARGET_NAME)_libretro.dll
 	SHARED := -shared -static-libgcc -static-libstdc++ -s -Wl,--no-undefined
+	CFLAGS += -includefi-warnings.h
 	ifeq ($(WANT_LUASOCKET),1)
 		LIBS += -lwsock32 -lws2_32
 	endif
