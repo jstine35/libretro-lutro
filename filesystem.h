@@ -23,6 +23,7 @@ int fs_isDirectory(lua_State *L);
 int fs_createDirectory(lua_State *L);
 int fs_getUserDirectory(lua_State *L);
 int fs_getAppdataDirectory(lua_State *L);
+int fs_getWorkingDirectory(lua_State *L);
 int fs_getDirectoryItems(lua_State *L);
 
 #endif // FILESYSTEM_H
